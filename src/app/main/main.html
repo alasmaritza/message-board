@@ -6,39 +6,55 @@
   </div>
   <div class="row">
     <form name="resourceForm" novalidate>
-      <div class="form-group col-md-6">
-        <label>Resource Type:</label>
-        <select ng-model="main.resource" class="form-control">
-          <option value="">Select</option>
-          <option value="long-term-housing">Long-Term Housing</option>
-          <option value="rehabilitation">Rehabilitation</option>
-          <option value="police-stations">Police Stations</option>
-        </select>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Resource Type:</label>
+          <select ng-model="main.resource" class="form-control">
+            <option value="">Select</option>
+            <option ng-repeat="category in main.categories" item-id={{category._id}} value={{category.categoryName}}>{{category.categoryName}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Location Name:</label>
+          <input type="text" class="form-control" ng-model="main.location">
+        </div>
+        <div class="form-group">
+          <label>Address:</label>
+          <input type="text" class="form-control" ng-model="main.address">
+        </div>
+        <div class="form-row">
+          <div class="col-md-6" style="padding-left:0px;">
+            <label>City:</label>
+            <input type="text" class="form-control" ng-model="main.city">
+          </div>
+          <div class="col-md-2">
+            <label>State:</label>
+            <!-- <select class="form-control" ng-model="main.state">
+            <option ng-repeat="state in states" value={{state.value}}>{{state.name}}</option>
+          </select> -->
+            <input type="text" class="form-control" ng-model="main.state" disabled>
+          </div>
+          <div class="col-md-4" style="padding-right:0px;">
+            <label>Zip:</label>
+            <input type="text" class="form-control" ng-model="main.zip" ng-pattern="">
+          </div>
+        </div>
       </div>
-      <div class="form-group col-md-6">
-        <label>Location Name:</label>
-        <input type="text" class="form-control" ng-model="main.location">
-      </div>
-      <div class="form-group col-md-6">
-        <label>Address:</label>
-        <input type="text" class="form-control" ng-model="main.address">
-      </div>
-      <div class="form-group col-md-6">
+      <div class="col-md-6">
+        <div class="form-group">
         <label>Phone:</label>
         <input type="text" class="form-control" ng-model="main.phone">
       </div>
-      <!-- <div class="form-group col-md-6">
-      <label>Email:</label>
-      <input type="text" class="form-control" ng-model="main.email">
-    </div> -->
-      <div class="form-group col-md-6">
+      <div class="form-group">
         <label>Website:</label>
         <input type="text" class="form-control" ng-model="main.website">
       </div>
-      <div class="form-group col-md-6">
+      <div class="form-group">
         <label>Comments:</label>
-        <textarea class="form-control custom-control" rows="4" style="resize:none" ng-model="main.message"></textarea>
+        <textarea class="form-control custom-control" rows="5" style="resize:none" ng-model="main.message"></textarea>
       </div>
+      </div>
+      
       <button type="button" class="btn btn-success" ng-click="main.postMessage()">Create</button>
     </form>
   </div>
@@ -83,7 +99,6 @@
             <span>
               <strong>Phone Number:</strong> {{ message.phone }}</span>
             <br>
-            <!-- <span><strong>Email:</strong> {{ message.email }}</span><br> -->
             <span>
               <strong>Website:</strong> {{ message.website }}</span>
             <br>
@@ -94,6 +109,4 @@
       </div>
     </div>
   </section>
-
-
 </div>
